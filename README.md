@@ -13,5 +13,4 @@
 10. @unhead/vue vue3 seo插件
 11. vite-plugin-vue-devtools vue3调试插件
 12. vite-plugin-sitemap 生成sitemap
-。。。
-。。。
+13. ...
