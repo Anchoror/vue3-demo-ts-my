@@ -6,10 +6,12 @@ import { exclude, include } from './build/vite/optimize'
 
 export default ({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
-  const env = loadEnv(mode, root)
+  const env = loadEnv(mode, `${root}/env`)
+  console.log(process.env.NODE_ENV, env)
   return {
-    base: env.VITE_APP_PUBLIC_PATH,
-    plugins: createVitePlugins(), // 调用自定义函数创建 Vite 插件配置
+    base: './',
+    // base: env.VITE_APP_PUBLIC_PATH,
+    plugins: createVitePlugins(env), // 调用自定义函数创建 Vite 插件配置
 
     resolve: {
       alias: {
@@ -31,7 +33,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       port: 3000,
       proxy: {
         '/api': {
-          target: env.VITE_APP_API_TARGET_URL,
+          target: env.VITE_APP_API_BASE_URL,
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
         },
@@ -44,7 +46,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     build: {
       cssCodeSplit: false,
       chunkSizeWarningLimit: 2048,
-      outDir: mode === 'development' ? 'dist/dev' : 'dist/prod',
+      outDir: `dist/${mode}`,
       minify: 'terser',
       terserOptions: {
         compress: {
@@ -54,6 +56,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       },
     },
 
+    envDir: 'env',
     optimizeDeps: { include, exclude },
   }
 }

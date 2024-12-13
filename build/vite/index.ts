@@ -12,8 +12,10 @@ import Icons from 'unplugin-icons/vite'
 import Sitemap from 'vite-plugin-sitemap'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import IconsResolver from 'unplugin-icons/resolver'
+import vitePluginAliOss from 'vite-plugin-ali-oss'
+import PreprocessorDirectives from 'unplugin-preprocessor-directives/vite'
 
-export function createVitePlugins() {
+export function createVitePlugins(env) {
   return [
     // https://github.com/posva/unplugin-vue-router
     VueRouter({
@@ -80,5 +82,17 @@ export function createVitePlugins() {
 
     // https://github.com/vuejs/devtools-next
     VueDevTools(),
+
+    vitePluginAliOss({
+      region: env.VITE_OSS_REGION,
+      accessKeyId: env.VITE_OSS_ACCESS_KEY_ID,
+      accessKeySecret: env.VITE_OSS_ACCESS_KEY_SECRET,
+      bucket: env.VITE_OSS_BUCKET,
+      ignore: ' ',
+      overwrite: true,
+      enabled: env.VITE_OSS_BUCKET && env.VITE_OSS_ENABLED === 'true',
+    }),
+
+    PreprocessorDirectives(),
   ]
 }

@@ -8,7 +8,7 @@ export const REQUEST_TOKEN_KEY = 'Authorization'
 
 const axiosInstance: AxiosInstance = axios.create({
   // API 请求的默认前缀
-  baseURL: import.meta.env.DEV ? '/api' : import.meta.env.VITE_APP_API_TARGET_URL,
+  baseURL: import.meta.env.DEV ? '/api' : import.meta.env.VITE_APP_API_BASE_URL,
   timeout: 20000, // 请求超时时间
 })
 
