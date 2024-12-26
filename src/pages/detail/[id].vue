@@ -8,7 +8,7 @@ definePage({
 </script>
 
 <template>
-  <div>detail</div>
+  <div class="p-12">detail</div>
 </template>
 
 <style lang="less" scoped></style>

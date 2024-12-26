@@ -12,7 +12,6 @@ useHead({
 
 <template>
   <div class="page">
-    <div>nbihao</div>
     <!-- #if DEV -->
     DEV
     <!-- #endif -->
