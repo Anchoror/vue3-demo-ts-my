@@ -9,8 +9,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, `${root}/env`)
   console.log(process.env.NODE_ENV, env)
   return {
-    base: './',
-    // base: env.VITE_APP_PUBLIC_PATH,
+    // base: './',
+    base: env.VITE_APP_PUBLIC_PATH,
     plugins: createVitePlugins(env), // 调用自定义函数创建 Vite 插件配置
 
     resolve: {
